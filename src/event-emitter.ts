@@ -1,6 +1,6 @@
 
 
-export abstract class EventEmitter {
+export class EventEmitter {
     private events: IEvent[] = [];
 
     public on(key: string, func: (data?: any) => void) {
