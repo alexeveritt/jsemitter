@@ -1,4 +1,4 @@
-import {EventEmitter} from '../event-emitter';
+import {EventEmitter} from '../dist/event-emitter';
 
 export class Clock extends EventEmitter {
 

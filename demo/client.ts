@@ -2,7 +2,6 @@ import {Clock} from './clock'
 
 
 let clock = new Clock();
-let count = 0;
 
 // subscribe to the onTick Event
 clock.on('onTick', (theDate) => {
