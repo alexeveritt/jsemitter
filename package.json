@@ -1,0 +1,32 @@
+{
+  "name": "ts-event-emitter",
+  "version": "1.0.0",
+  "description": "Typescript Event Emitter class",
+  "main": "dist/event-emitter.js",
+  "types": "dist/event-emitter.d.ts",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha -r ts-node/register src/**/*.spec.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexeveritt/ts-event-emitter.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alexeveritt/ts-event-emitter/issues"
+  },
+  "homepage": "https://github.com/alexeveritt/ts-event-emitter#readme",
+  "devDependencies": {
+    "@types/chai": "^4.1.4",
+    "@types/mocha": "^5.2.2",
+    "chai": "^4.1.2",
+    "mocha": "^5.2.0",
+    "ts-node": "^6.1.2",
+    "typescript": "^2.9.2"
+  }
+}

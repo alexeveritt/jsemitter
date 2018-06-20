@@ -1,14 +1,7 @@
-interface IEvent {
-    key: string;
-    funcs: any[];
-    count: number;
-}
+
 
 export abstract class EventEmitter {
     private events: IEvent[] = [];
-
-    constructor() {
-    }
 
     public on(key: string, func: (data?: any) => void) {
         this.addEvent(key, func, 0);
