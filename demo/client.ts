@@ -1,6 +1,5 @@
 import {Clock} from './clock'
 
-
 let clock = new Clock();
 
 // subscribe to the onTick Event

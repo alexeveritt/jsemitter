@@ -1,9 +1,45 @@
 # Typescript Event Emitter class
+Lightweight Event Emitter class written in typescript.
 
 ## Usage
+The event emitter can be used with both vanilla js and typescript
 
-Typescript
-Vanilla JS
+Typescript Example
+
+```typescript
+import {EventEmitter} from 'event-emitter';
+
+class Clock extends EventEmitter {
+    constructor() {
+        super();
+        (<any>window).setInterval(this.tickTock, 1000);
+    }
+
+    private tickTock(): void {
+        this.emit('onTick', new Date())
+    }
+}
+
+let clock = new Clock();
+
+// subscribe to the onTick Event
+clock.on('onTick', (theDate) => {
+    console.log(`The time is ${theDate}`);
+    this.count++;
+    if (this.count > 10) {
+        // unsubscribe after 10 seconds
+        clock.off('onTick');
+        console.log('Clock stopped after 10 seconds');
+    }
+});
+
+```
+
+
+Vanilla JS Example
+```typescript
+
+```
 
 ## Methods
 
