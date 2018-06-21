@@ -7,7 +7,7 @@ The event emitter can be used with both vanilla js and typescript
 Typescript Example
 
 ```typescript
-import {EventEmitter} from 'jsemitter';
+import {JSEmitter} from "jsemitter";
 
 class Clock extends JSEmitter {
     constructor() {
