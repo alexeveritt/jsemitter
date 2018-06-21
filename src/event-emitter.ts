@@ -1,7 +1,9 @@
-
-
 export class EventEmitter {
     private events: IEvent[] = [];
+
+    public get count() {
+        return this.events ? this.events.length : 0
+    }
 
     public on(key: string, func: (data?: any) => void) {
         this.addEvent(key, func, 0);
