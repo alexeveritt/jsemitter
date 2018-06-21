@@ -5,19 +5,42 @@ export class EventEmitter {
         return this.events ? this.events.length : 0
     }
 
-    public on(key: string, func: (data?: any) => void) {
-        this.addEvent(key, func, 0);
+    public functionCount(key: string) {
+        if (!key) {
+            throw new Error('Invalid Parameter, key missing');
+        }
+        let evt = this.findEvent(key);
+        if (evt && evt.funcs) {
+            return evt.funcs.length;
+        }
+        return 0;
     }
 
-    public once(key: string, func: (data?: any) => void) {
-        this.addEvent(key, func, 1)
+    public on(key: string, func: (data?: any) => void): number {
+        if (!key) {
+            throw new Error('Invalid Parameter, key missing');
+        }
+        return this.addEvent(key, func, 0);
     }
 
-    public many(key: string, func: (data?: any) => void, count: number) {
-        this.addEvent(key, func, count)
+    public once(key: string, func: (data?: any) => void): number {
+        if (!key) {
+            throw new Error('Invalid Parameter, key missing');
+        }
+        return this.addEvent(key, func, 1);
     }
 
-    public emit(key: string, data?: any) {
+    public many(key: string, func: (data?: any) => void, count: number): number {
+        if (!key) {
+            throw new Error('Invalid Parameter, key missing');
+        }
+        return this.addEvent(key, func, count);
+    }
+
+    public emit(key: string, data?: any): void {
+        if (!key) {
+            throw new Error('Invalid Parameter, key missing');
+        }
         let evt = this.findEvent(key);
 
         if (evt) {
@@ -39,6 +62,9 @@ export class EventEmitter {
     }
 
     public off(key: string, func?: (data?: any) => void): void {
+        if (!key) {
+            throw new Error('Invalid Parameter, key missing');
+        }
         this.removeEvents(key, func);
     };
 
@@ -46,11 +72,18 @@ export class EventEmitter {
         this.removeEvents();
     };
 
-    public offKey(key) {
+    public offKey(key: string) {
+        if (!key) {
+            throw new Error('Invalid Parameter, key missing');
+        }
         this.removeEvents(key);
     };
 
     private findEvent(key: string): IEvent | null {
+        if (!key) {
+            throw new Error('Invalid Parameter, key missing');
+        }
+
         let foundItem: IEvent = {key: '', funcs: [], count: 0};
 
         this.events.forEach(function (itm) {
@@ -62,15 +95,16 @@ export class EventEmitter {
         return foundItem.key ? foundItem : null;
     }
 
-    private removeEvents(key?: string, func?: any): void {
+    private removeEvents(key?: string, func?: any): number {
         let evts = this.events;
+
         if (!key) {
             // remove all the events
             evts.splice(0, evts.length);
         } else {
             if (!func) {
                 // remove all items associated with key
-                for (let i = evts.length; i > -1; i--) {
+                for (let i = evts.length - 1; i > -1; i--) {
                     if (evts[i].key === key) {
                         evts.splice(i, 1);
                     }
@@ -80,27 +114,37 @@ export class EventEmitter {
             let evt = this.findEvent(key);
             if (evt) {
                 for (let i = evts.length - 1; i > -1; i--) {
-                    if (evts[i].funcs === func) {
-                        evts.splice(i, 1);
+                    const funcs = evts[i].funcs;
+                    for (let j = funcs.length - 1; j > -1; j--) {
+                        if (funcs[i] === func) {
+                            funcs.splice(i, 1);
+                        }
                     }
+
                 }
             }
         }
+        return evts.length;
     };
 
-    private addEvent(key: string, func: () => void, count: number) {
+    private addEvent(key: string, func: () => void, count: number): number {
+        if (!key) {
+            throw new Error('Invalid Parameter, key missing');
+        }
         let evt = this.findEvent(key);
         if (!evt) {
-            evt = {key: key, funcs: [], count: count};
+            evt = {key, funcs: [], count: count};
             this.events.push(evt);
         } else {
             for (let i = 0; i < evt.funcs.length; i++) {
-                if (evt.funcs[i].func === func) {
-                    return;
+                if (evt.funcs[i] === func) {
+                    // function already bound to emitter
+                    return evt.funcs.length;
                 }
             }
         }
 
         evt.funcs.push(func);
+        return evt.funcs.length;
     };
 }

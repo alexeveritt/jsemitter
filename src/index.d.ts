@@ -1,5 +1,5 @@
 interface IEvent {
     key: string;
-    funcs: any[];
+    funcs: { (): void }[];
     count: number;
 }
