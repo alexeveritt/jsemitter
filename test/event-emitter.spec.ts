@@ -44,9 +44,6 @@ describe('on direct function', () => {
 
 describe('off function', () => {
 
-    //
-
-
     it('should remove the event', () => {
         // const tsTest = new EventEmitter();
         const tsTest = new Test();
