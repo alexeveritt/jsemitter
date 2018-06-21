@@ -1,13 +1,13 @@
 # Typescript Event Emitter class
 
-##Usage
+## Usage
 
 Typescript
 Vanilla JS
 
-##Methods
+## Methods
 
-###on
+### on
 Fires a callback when an event is emitted that matches the key
 
 **Function Signature**
@@ -22,7 +22,7 @@ on('something-happened', (data)=>{
     // do something with the data
 })
 ````
-###once
+### once
 Fires a callback one time when an event is emitted that matches the key. After the event is is fired the callback is removed and will not fire again
 
 **Function Signature**
@@ -38,7 +38,7 @@ once('something-happened', (data)=>{
 })
 ````
 
-###many
+### many
 Fires a callback a specific number of times time when an event is emitted that matches the key. After the event is is fired  the callback is removed and will not fire again
 
 **Function Signature**
@@ -53,7 +53,7 @@ once('something-happened', (data)=>{
 }, 7)
 ````
 
-###emit
+### emit
 Sends an event to any callback listening to the key 
 
 **Function Signature**
@@ -67,7 +67,7 @@ emit('something-happened', 'Hello');
 emit('something-else', {someObject:true});
 ````
 
-###off
+### off
 Removes a specific callback associated with the key 
 
 **Function Signature**
@@ -80,7 +80,7 @@ off(key, callback)
 off('something-happened', (data)=>{})
 ````
 
-###offAll
+### offAll
 Removes all callbacks attached to the event emitter
 
 **Function Signature**
@@ -93,7 +93,7 @@ offAll()
 offAll()
 ````
 
-###offKey
+### offKey
 
 Removes a callback associated with the key 
 
