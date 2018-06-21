@@ -1,150 +1,142 @@
-export class EventEmitter {
-    private events: IEvent[] = [];
-
-    public get count() {
-        return this.events ? this.events.length : 0
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var JSEmitter = (function () {
+    function JSEmitter() {
+        this.events = [];
     }
-
-    public functionCount(key: string) {
+    Object.defineProperty(JSEmitter.prototype, "count", {
+        get: function () {
+            return this.events ? this.events.length : 0;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    JSEmitter.prototype.functionCount = function (key) {
         if (!key) {
             throw new Error('Invalid Parameter, key missing');
         }
-        let evt = this.findEvent(key);
+        var evt = this.findEvent(key);
         if (evt && evt.funcs) {
             return evt.funcs.length;
         }
         return 0;
-    }
-
-    public on(key: string, func: (data?: any) => void): number {
+    };
+    JSEmitter.prototype.on = function (key, func) {
         if (!key) {
             throw new Error('Invalid Parameter, key missing');
         }
         return this.addEvent(key, func, 0);
-    }
-
-    public once(key: string, func: (data?: any) => void): number {
+    };
+    JSEmitter.prototype.once = function (key, func) {
         if (!key) {
             throw new Error('Invalid Parameter, key missing');
         }
         return this.addEvent(key, func, 1);
-    }
-
-    public many(key: string, func: (data?: any) => void, count: number): number {
+    };
+    JSEmitter.prototype.many = function (key, func, count) {
         if (!key) {
             throw new Error('Invalid Parameter, key missing');
         }
         return this.addEvent(key, func, count);
-    }
-
-    public emit(key: string, data?: any): void {
+    };
+    JSEmitter.prototype.emit = function (key, data) {
         if (!key) {
             throw new Error('Invalid Parameter, key missing');
         }
-        let evt = this.findEvent(key);
-
+        var evt = this.findEvent(key);
         if (evt) {
-            let args = null;
+            var args = null;
             if (arguments.length > 1) {
                 args = [].splice.call(arguments, 0);
-                args = (<any>args).splice(1);
+                args = args.splice(1);
             }
-
-            for (let i = 0; i < evt.funcs.length; i++) {
+            for (var i = 0; i < evt.funcs.length; i++) {
                 evt.funcs[i].apply(this, args);
             }
-
             if (evt.count > 0 && --evt.count === 0) {
-                // remove event
                 this.removeEvents(key);
             }
         }
-    }
-
-    public off(key: string, func?: (data?: any) => void): void {
+    };
+    JSEmitter.prototype.off = function (key, func) {
         if (!key) {
             throw new Error('Invalid Parameter, key missing');
         }
         this.removeEvents(key, func);
     };
-
-    public offAll(): void {
+    ;
+    JSEmitter.prototype.offAll = function () {
         this.removeEvents();
     };
-
-    public offKey(key: string) {
+    ;
+    JSEmitter.prototype.offKey = function (key) {
         if (!key) {
             throw new Error('Invalid Parameter, key missing');
         }
         this.removeEvents(key);
     };
-
-    private findEvent(key: string): IEvent | null {
+    ;
+    JSEmitter.prototype.findEvent = function (key) {
         if (!key) {
             throw new Error('Invalid Parameter, key missing');
         }
-
-        let foundItem: IEvent = {key: '', funcs: [], count: 0};
-
+        var foundItem = { key: '', funcs: [], count: 0 };
         this.events.forEach(function (itm) {
             if (itm.key === key) {
                 foundItem = itm;
             }
         });
-
         return foundItem.key ? foundItem : null;
-    }
-
-    private removeEvents(key?: string, func?: any): number {
-        let evts = this.events;
-
+    };
+    JSEmitter.prototype.removeEvents = function (key, func) {
+        var evts = this.events;
         if (!key) {
-            // remove all the events
             evts.splice(0, evts.length);
-        } else {
+        }
+        else {
             if (!func) {
-                // remove all items associated with key
-                for (let i = evts.length - 1; i > -1; i--) {
+                for (var i = evts.length - 1; i > -1; i--) {
                     if (evts[i].key === key) {
                         evts.splice(i, 1);
                     }
                 }
             }
-
-            let evt = this.findEvent(key);
+            var evt = this.findEvent(key);
             if (evt) {
-                for (let i = evts.length - 1; i > -1; i--) {
-                    const funcs = evts[i].funcs;
-                    for (let j = funcs.length - 1; j > -1; j--) {
+                for (var i = evts.length - 1; i > -1; i--) {
+                    var funcs = evts[i].funcs;
+                    for (var j = funcs.length - 1; j > -1; j--) {
                         if (funcs[i] === func) {
                             funcs.splice(i, 1);
                         }
                     }
-
                 }
             }
         }
         return evts.length;
     };
-
-    private addEvent(key: string, func: () => void, count: number): number {
+    ;
+    JSEmitter.prototype.addEvent = function (key, func, count) {
         if (!key) {
             throw new Error('Invalid Parameter, key missing');
         }
-        let evt = this.findEvent(key);
+        var evt = this.findEvent(key);
         if (!evt) {
-            evt = {key, funcs: [], count: count};
+            evt = { key: key, funcs: [], count: count };
             this.events.push(evt);
-        } else {
-            for (let i = 0; i < evt.funcs.length; i++) {
+        }
+        else {
+            for (var i = 0; i < evt.funcs.length; i++) {
                 if (evt.funcs[i] === func) {
-                    // function already bound to emitter
                     return evt.funcs.length;
                 }
             }
         }
-
         evt.funcs.push(func);
         return evt.funcs.length;
     };
-}
+    ;
+    return JSEmitter;
+}());
+exports.JSEmitter = JSEmitter;
+//# sourceMappingURL=index.js.map

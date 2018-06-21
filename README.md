@@ -1,4 +1,4 @@
-# Typescript Event Emitter class
+# JSEmitter
 Lightweight Event Emitter class written in typescript that works on both client and server with no dependencies
 
 ## Usage
@@ -7,9 +7,9 @@ The event emitter can be used with both vanilla js and typescript
 Typescript Example
 
 ```typescript
-import {EventEmitter} from 'event-emitter';
+import {EventEmitter} from 'jsemitter';
 
-class Clock extends EventEmitter {
+class Clock extends JSEmitter {
     constructor() {
         super();
         (<any>window).setInterval(this.tickTock, 1000);
@@ -32,12 +32,6 @@ clock.on('onTick', (theDate) => {
         console.log('Clock stopped after 10 seconds');
     }
 });
-
-```
-
-
-Vanilla JS Example
-```typescript
 
 ```
 

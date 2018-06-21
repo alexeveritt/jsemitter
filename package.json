@@ -1,7 +1,7 @@
 {
   "name": "jsemitter",
   "version": "1.0.0",
-  "description": "Typescript Event Emitter class",
+  "description": "Lightweight dependency free event emitter for client and server applications",
   "main": "dist/event-emitter.js",
   "types": "dist/event-emitter.d.ts",
   "directories": {
@@ -12,15 +12,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/alexeveritt/ts-event-emitter.git"
+    "url": "git+https://github.com/alexeveritt/jsemitter.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/alexeveritt/ts-event-emitter/issues"
+    "url": "https://github.com/alexeveritt/jsemitter/issues"
   },
-  "homepage": "https://github.com/alexeveritt/ts-event-emitter#readme",
+  "homepage": "https://github.com/alexeveritt/jsemitter#readme",
   "devDependencies": {
     "@types/chai": "^4.1.4",
     "@types/mocha": "^5.2.2",

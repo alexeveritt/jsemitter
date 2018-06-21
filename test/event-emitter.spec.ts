@@ -1,9 +1,9 @@
-import {EventEmitter} from '../src/event-emitter';
+import {JSEmitter} from '../src/index';
 import {expect} from 'chai';
 import {describe, it} from 'mocha';
 import * as sinon from 'sinon';
 
-class Test extends EventEmitter {
+class Test extends JSEmitter {
 
 }
 
@@ -27,7 +27,7 @@ describe('When binding a callback to the on function', () => {
 
             expect(result).to.be.an('object');
             expect(result).to.have.property('message');
-            expect(result.message).to.equal('Hello World!')
+            expect(result.message).to.equal('Hello World!');
             return done();
         });
         tsTest.emit('test-key', {message: 'Hello World!'})
@@ -120,7 +120,6 @@ describe('When binding a callback to the offKey function', () => {
 describe('When binding a callback to the offAll function', () => {
 
     it('should remove all the events', () => {
-        const key = 'test-key';
         const tsTest = new Test();
         tsTest.on('test-key-01', () => {
         });

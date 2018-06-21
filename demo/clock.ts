@@ -1,6 +1,7 @@
-import {EventEmitter} from 'event-emitter';
+import {JSEmitter} from "../src";
 
-export class Clock extends EventEmitter {
+
+export class Clock extends JSEmitter {
     constructor() {
         super();
         (<any>window).setInterval(this.tickTock, 1000);
