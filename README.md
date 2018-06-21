@@ -1,5 +1,5 @@
 # Typescript Event Emitter class
-Lightweight Event Emitter class written in typescript.
+Lightweight Event Emitter class written in typescript that works on both client and server with no dependencies
 
 ## Usage
 The event emitter can be used with both vanilla js and typescript
