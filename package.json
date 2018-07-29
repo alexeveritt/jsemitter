@@ -14,8 +14,8 @@
     "type": "git",
     "url": "git+https://github.com/alexeveritt/jsemitter.git"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["Event Emitter"],
+  "author": "Alex Everitt",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/alexeveritt/jsemitter/issues"
