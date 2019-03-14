@@ -1,6 +1,6 @@
 {
   "name": "jsemitter",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Lightweight dependency free event emitter for client and server applications",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -14,7 +14,9 @@
     "type": "git",
     "url": "git+https://github.com/alexeveritt/jsemitter.git"
   },
-  "keywords": ["Event Emitter"],
+  "keywords": [
+    "Event Emitter"
+  ],
   "author": "Alex Everitt",
   "license": "MIT",
   "bugs": {
