@@ -103,12 +103,9 @@ var JSEmitter = (function () {
             }
             var evt = this.findEvent(key);
             if (evt) {
-                for (var i = evts.length - 1; i > -1; i--) {
-                    var funcs = evts[i].funcs;
-                    for (var j = funcs.length - 1; j > -1; j--) {
-                        if (funcs[i] === func) {
-                            funcs.splice(i, 1);
-                        }
+                for (var i = evt.funcs.length - 1; i > -1; i--) {
+                    if (evt.funcs[i] === func) {
+                        evt.funcs.splice(i, 1);
                     }
                 }
             }

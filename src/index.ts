@@ -113,14 +113,10 @@ export class JSEmitter {
 
             let evt = this.findEvent(key);
             if (evt) {
-                for (let i = evts.length - 1; i > -1; i--) {
-                    const funcs = evts[i].funcs;
-                    for (let j = funcs.length - 1; j > -1; j--) {
-                        if (funcs[i] === func) {
-                            funcs.splice(i, 1);
-                        }
+                for (let i = evt.funcs.length-1 ; i > -1 ;i--){
+                    if (evt.funcs[i] === func) {
+                        evt.funcs.splice(i, 1);
                     }
-
                 }
             }
         }

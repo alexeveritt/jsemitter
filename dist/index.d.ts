@@ -9,7 +9,7 @@ export declare class JSEmitter {
     off(key: string, func?: (data?: any) => void): void;
     offAll(): void;
     offKey(key: string): void;
-    private findEvent(key);
-    private removeEvents(key?, func?);
-    private addEvent(key, func, count);
+    private findEvent;
+    private removeEvents;
+    private addEvent;
 }
