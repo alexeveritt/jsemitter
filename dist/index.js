@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+var ERR_INVALIDPARAM = 'Invalid Parameter, key missing';
 var JSEmitter = (function () {
     function JSEmitter() {
         this.events = [];
@@ -13,7 +14,7 @@ var JSEmitter = (function () {
     });
     JSEmitter.prototype.functionCount = function (key) {
         if (!key) {
-            throw new Error('Invalid Parameter, key missing');
+            throw new Error(ERR_INVALIDPARAM);
         }
         var evt = this.findEvent(key);
         if (evt && evt.funcs) {
@@ -23,25 +24,25 @@ var JSEmitter = (function () {
     };
     JSEmitter.prototype.on = function (key, func) {
         if (!key) {
-            throw new Error('Invalid Parameter, key missing');
+            throw new Error(ERR_INVALIDPARAM);
         }
         return this.addEvent(key, func, 0);
     };
     JSEmitter.prototype.once = function (key, func) {
         if (!key) {
-            throw new Error('Invalid Parameter, key missing');
+            throw new Error(ERR_INVALIDPARAM);
         }
         return this.addEvent(key, func, 1);
     };
     JSEmitter.prototype.many = function (key, func, count) {
         if (!key) {
-            throw new Error('Invalid Parameter, key missing');
+            throw new Error(ERR_INVALIDPARAM);
         }
         return this.addEvent(key, func, count);
     };
     JSEmitter.prototype.emit = function (key, data) {
         if (!key) {
-            throw new Error('Invalid Parameter, key missing');
+            throw new Error(ERR_INVALIDPARAM);
         }
         var evt = this.findEvent(key);
         if (evt) {
@@ -60,7 +61,7 @@ var JSEmitter = (function () {
     };
     JSEmitter.prototype.off = function (key, func) {
         if (!key) {
-            throw new Error('Invalid Parameter, key missing');
+            throw new Error(ERR_INVALIDPARAM);
         }
         this.removeEvents(key, func);
     };
@@ -71,14 +72,14 @@ var JSEmitter = (function () {
     ;
     JSEmitter.prototype.offKey = function (key) {
         if (!key) {
-            throw new Error('Invalid Parameter, key missing');
+            throw new Error(ERR_INVALIDPARAM);
         }
         this.removeEvents(key);
     };
     ;
     JSEmitter.prototype.findEvent = function (key) {
         if (!key) {
-            throw new Error('Invalid Parameter, key missing');
+            throw new Error(ERR_INVALIDPARAM);
         }
         var foundItem = { key: '', funcs: [], count: 0 };
         this.events.forEach(function (itm) {
@@ -115,7 +116,7 @@ var JSEmitter = (function () {
     ;
     JSEmitter.prototype.addEvent = function (key, func, count) {
         if (!key) {
-            throw new Error('Invalid Parameter, key missing');
+            throw new Error(ERR_INVALIDPARAM);
         }
         var evt = this.findEvent(key);
         if (!evt) {

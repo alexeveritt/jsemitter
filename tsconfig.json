@@ -12,11 +12,13 @@
     "noImplicitThis": false,
     "strictNullChecks": true,
     "preserveConstEnums": true,
+    "skipLibCheck": true,
     "sourceMap": true,
-    "declaration": true
+    "declaration": true,
+    "types": ["@types/chai"]
   },
   "lib": [
-    "ES6",
+    "es6",
     "es2015.core",
     "es2017",
     "dom"
